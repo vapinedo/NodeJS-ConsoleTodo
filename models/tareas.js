@@ -24,7 +24,7 @@ class Tareas {
     });
   }
 
-  listadoTodas() {
+  listarTodas() {
     console.log();
     this.listadoArr.forEach((tarea, index) => {
       const idx = `${index + 1}`.green;
@@ -36,20 +36,26 @@ class Tareas {
 
   listarCompletadas() {
     console.log();
-    const list = this.listadoArr.filter(tarea => tarea.completadoEn)
+    const list = this.listadoArr.filter((tarea) => tarea.completadoEn);
     list.forEach((item, index) => {
       const idx = `${index + 1}`;
       console.log(`${idx}. ${item.desc} :: ${item.completadoEn.green}`);
-    })
+    });
   }
 
   listarPendientes() {
     console.log();
-    const list = this.listadoArr.filter(tarea => !tarea.completadoEn)
+    const list = this.listadoArr.filter((tarea) => !tarea.completadoEn);
     list.forEach((item, index) => {
       const idx = `${index + 1}`;
-      console.log(`${idx}. ${item.desc} :: ${'Pendiente'.red}`);
-    })
+      console.log(`${idx}. ${item.desc} :: ${"Pendiente".red}`);
+    });
+  }
+
+  borrarTarea(id = "") {
+    if (this._listado[id]) {
+      delete this._listado[id];
+    }
   }
 }
 
