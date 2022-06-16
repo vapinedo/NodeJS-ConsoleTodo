@@ -8,7 +8,8 @@ const main = async () => {
   const tareas = new Tareas();
   const tareasDB = leerDB();
 
-  if(tareasDB) { // cargar tareas
+  if (tareasDB) {
+    // cargar tareas
     tareas.cargarTareasFromArray(tareasDB);
   }
 
@@ -22,7 +23,7 @@ const main = async () => {
         break;
 
       case 2:
-        console.log(tareas.listadoArr);
+        tareas.listadoCompleto();
         break;
     }
     guardarDB(tareas.listadoArr);
