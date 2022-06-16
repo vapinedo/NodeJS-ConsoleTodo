@@ -24,7 +24,7 @@ class Tareas {
     });
   }
 
-  listadoCompleto() {
+  listadoTodas() {
     console.log();
     this.listadoArr.forEach((tarea, index) => {
       const idx = `${index + 1}`.green;
@@ -34,24 +34,22 @@ class Tareas {
     });
   }
 
-  listarPendientesCompletadas(completadas = true) {
+  listarCompletadas() {
     console.log();
-    let contador = 0;
-    this.listadoArr.forEach((tarea) => {
-      const { desc, completadoEn } = tarea;
-      const estado = completadoEn ? "Completada".green : "Pendiente".red;
-      if (completadas) {
-        if (completadoEn) {
-          contador += 1;
-          console.log(`${contador.toString().green}. ${desc} :: ${completadoEn}`);
-        }
-      } else {
-        if (!completadoEn) {
-          contador += 1;
-          console.log(`${contador.toString().green}. ${desc} :: ${estado}`);
-        }
-      }
-    });
+    const list = this.listadoArr.filter(tarea => tarea.completadoEn)
+    list.forEach((item, index) => {
+      const idx = `${index + 1}`;
+      console.log(`${idx}. ${item.desc} :: ${item.completadoEn.green}`);
+    })
+  }
+
+  listarPendientes() {
+    console.log();
+    const list = this.listadoArr.filter(tarea => !tarea.completadoEn)
+    list.forEach((item, index) => {
+      const idx = `${index + 1}`;
+      console.log(`${idx}. ${item.desc} :: ${'Pendiente'.red}`);
+    })
   }
 }
 

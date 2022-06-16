@@ -23,15 +23,15 @@ const main = async () => {
         break;
 
       case 2:
-        tareas.listadoCompleto();
+        tareas.listadoTodas();
         break;
 
-      case 3: // tareas completadas
-        tareas.listarPendientesCompletadas(true);
+      case 3: 
+        tareas.listarCompletadas();
         break;
         
-        case 4: // tareas pendientes
-        tareas.listarPendientesCompletadas(false);
+        case 4: 
+        tareas.listarPendientes();
         break;
     }
     guardarDB(tareas.listadoArr);
