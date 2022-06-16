@@ -8,10 +8,9 @@ const main = async () => {
   const tareas = new Tareas();
   const tareasDB = leerDB();
 
-  if(tareasDB) {
-    // Establecer las tareas
+  if(tareasDB) { // cargar tareas
+    tareas.cargarTareasFromArray(tareasDB);
   }
-  await pausa();
 
   do {
     opt = await inquirerMenu();
@@ -26,7 +25,7 @@ const main = async () => {
         console.log(tareas.listadoArr);
         break;
     }
-    // guardarDB(tareas.listadoArr);
+    guardarDB(tareas.listadoArr);
 
     await pausa();
   } while (opt !== 0);
