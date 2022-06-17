@@ -69,9 +69,9 @@ const listarTareasBorrar = async (tareas = []) => {
 
   choices.unshift({
     value: 0,
-    name: "0".green + " Cancelar"
+    name: "0".green + " Cancelar",
   });
-  
+
   const preguntas = [
     {
       type: "list",
@@ -84,16 +84,38 @@ const listarTareasBorrar = async (tareas = []) => {
   return id;
 };
 
-const confirmar = async(message) => {
+const confirmar = async (message) => {
   const question = [
     {
-      type: "confirm", 
-      name: "ok", 
-      message
-    }
+      type: "confirm",
+      name: "ok",
+      message,
+    },
   ];
   const { ok } = await inquirer.prompt(question);
   return ok;
+};
+
+const mostrarListadoCheckList = async (tareas = []) => {
+  const choices = tareas.map((tarea, index) => {
+    const idx = `${index + 1}.`.green;
+    return {
+      value: tarea.id,
+      name: `${idx} ${tarea.desc}`,
+      checked: (tarea.completadoEn) ? true : false,
+    };
+  });
+
+  const pregunta = [
+    {
+      type: "checkbox",
+      name: "ids",
+      message: "Selecciones",
+      choices,
+    },
+  ];
+  const { ids } = await inquirer.prompt(pregunta);
+  return ids;
 };
 
 module.exports = {
@@ -101,5 +123,6 @@ module.exports = {
   pausa,
   leerInput,
   listarTareasBorrar,
-  confirmar
+  confirmar,
+  mostrarListadoCheckList,
 };
